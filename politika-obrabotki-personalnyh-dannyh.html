@@ -100,9 +100,24 @@
             margin-bottom: 30px;
         }
     </style>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    <h1>ПОЛИТИКА ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ</h1>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="images/taxi.png" alt="Ваш трансфер" class="logo-img">
+                <span class="logo-text">Ваш трансфер</span>
+            </a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="form.html" class="nav-link">Заказать</a>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h1>ПОЛИТИКА ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ</h1>
     
     <p class="date">Дата вступления в силу: <span id="currentDate"></span></p>
 
@@ -188,6 +203,8 @@
         Сервис трансфера
     </p>
 
+    </div>
+    
     <script>
         document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ru-RU');
     </script>

@@ -7,7 +7,10 @@ const fs = require('fs');
 const path = require('path');
 
 // Загружаем HTML файл
-const html = fs.readFileSync(path.join(__dirname, '../form.html'), 'utf8');
+let html = fs.readFileSync(path.join(__dirname, '../form.html'), 'utf8');
+// Удаляем ссылки на внешние скрипты и стили для тестов
+html = html.replace(/<link[^>]*rel="stylesheet"[^>]*>/g, '');
+html = html.replace(/<script[^>]*src="[^"]*"[^>]*><\/script>/g, '');
 
 describe('Форма заказа трансфера', () => {
   let document;
@@ -15,12 +18,16 @@ describe('Форма заказа трансфера', () => {
   let dom;
 
   beforeEach(() => {
-    // Создаем DOM из HTML
+    // Создаем DOM из HTML (отключаем загрузку внешних ресурсов)
     dom = new JSDOM(html, {
       runScripts: 'dangerously',
       resources: 'usable',
       url: 'http://localhost',
-      pretendToBeVisual: true
+      pretendToBeVisual: true,
+      beforeParse(window) {
+        // Мокируем загрузку внешних файлов
+        window.fetch = jest.fn(() => Promise.resolve({}));
+      }
     });
     
     document = dom.window.document;
@@ -32,6 +39,15 @@ describe('Форма заказа трансфера', () => {
     window.alert = jest.fn();
     global.alert = window.alert;
     global.fetch = jest.fn(() => Promise.resolve({}));
+    
+    // Загружаем скрипт формы вручную
+    const formScript = fs.readFileSync(path.join(__dirname, '../scripts/form.js'), 'utf8');
+    const scriptElement = document.createElement('script');
+    scriptElement.textContent = formScript;
+    document.body.appendChild(scriptElement);
+    
+    // Ждем выполнения скрипта
+    return new Promise(resolve => setTimeout(resolve, 200));
   });
 
   describe('Элементы формы', () => {
@@ -56,9 +72,9 @@ describe('Форма заказа трансфера', () => {
 
     test('должны существовать все типы автомобилей', () => {
       const carTypes = document.querySelectorAll('input[name="carType"]');
-      expect(carTypes.length).toBe(6);
+      expect(carTypes.length).toBe(3);
       
-      const expectedTypes = ['standard', 'comfort', 'business', 'minivan5', 'minivan7', 'vclass'];
+      const expectedTypes = ['sedan4', 'minivan6', 'minivan7'];
       carTypes.forEach(radio => {
         expect(expectedTypes).toContain(radio.value);
       });
@@ -73,21 +89,24 @@ describe('Форма заказа трансфера', () => {
       agreeCheckbox.checked = false;
       
       // Ждем, пока скрипты загрузятся
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, 200));
       
       const submitEvent = new window.Event('submit', { bubbles: true, cancelable: true });
       form.dispatchEvent(submitEvent);
       
       // Ждем выполнения обработчика
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, 200));
       
       expect(window.alert).toHaveBeenCalledWith('Необходимо согласие с политикой обработки персональных данных');
     });
   });
 
   describe('Маска телефона', () => {
-    test('должна форматировать номер телефона', () => {
+    test('должна форматировать номер телефона', async () => {
       const phoneInput = document.getElementById('phone');
+      
+      // Ждем загрузки скрипта
+      await new Promise(resolve => setTimeout(resolve, 200));
       
       // Симулируем ввод номера
       phoneInput.value = '79991234567';
@@ -98,8 +117,11 @@ describe('Форма заказа трансфера', () => {
       expect(phoneInput.value).toMatch(/\+7\s*\(\d{3}\)\s*\d{3}-\d{2}-\d{2}/);
     });
 
-    test('должна обрабатывать номер начинающийся с 8', () => {
+    test('должна обрабатывать номер начинающийся с 8', async () => {
       const phoneInput = document.getElementById('phone');
+      
+      // Ждем загрузки скрипта
+      await new Promise(resolve => setTimeout(resolve, 200));
       
       phoneInput.value = '89991234567';
       const inputEvent = new window.Event('input', { bubbles: true });
@@ -110,9 +132,12 @@ describe('Форма заказа трансфера', () => {
   });
 
   describe('Валидация даты', () => {
-    test('минимальная дата должна быть сегодня', () => {
+    test('минимальная дата должна быть сегодня', async () => {
       const dateInput = document.getElementById('date');
       const today = new Date().toISOString().split('T')[0];
+      
+      // Ждем загрузки скрипта, который устанавливает min
+      await new Promise(resolve => setTimeout(resolve, 200));
       
       expect(dateInput.getAttribute('min')).toBe(today);
     });

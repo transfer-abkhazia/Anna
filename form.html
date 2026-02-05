@@ -18,6 +18,12 @@
     <link rel="alternate" href="https://abkhazia-transfer.ru/form.html"/>
     <meta name="theme-color" content="#667eea">
     
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/taxi.png" type="image/png">
+    <link rel="icon" type="image/png" href="images/taxi.png">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="apple-touch-icon" href="images/taxi.png">
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://abkhazia-transfer.ru/form.html">
@@ -38,7 +44,7 @@
     <meta name="twitter:image" content="https://abkhazia-transfer.ru/og-image.jpg">
     <meta name="twitter:image:alt" content="Заказать трансфер онлайн - Ваш трансфер">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
     
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -115,28 +121,16 @@
         <form id="orderForm">
             <div class="car-types">
                 <div class="car-type">
-                    <input type="radio" id="standard" name="carType" value="standard" checked>
-                    <label for="standard">Стандарт</label>
+                    <input type="radio" id="sedan4" name="carType" value="sedan4" checked>
+                    <label for="sedan4">4х местный седан</label>
                 </div>
                 <div class="car-type">
-                    <input type="radio" id="comfort" name="carType" value="comfort">
-                    <label for="comfort">Комфорт +</label>
-                </div>
-                <div class="car-type">
-                    <input type="radio" id="business" name="carType" value="business">
-                    <label for="business">Бизнес</label>
-                </div>
-                <div class="car-type">
-                    <input type="radio" id="minivan5" name="carType" value="minivan5">
-                    <label for="minivan5">Минивэн 5 мест</label>
+                    <input type="radio" id="minivan6" name="carType" value="minivan6">
+                    <label for="minivan6">Минивэн до 6 мест (мах 3 багажа)</label>
                 </div>
                 <div class="car-type">
                     <input type="radio" id="minivan7" name="carType" value="minivan7">
                     <label for="minivan7">Минивэн 7 мест</label>
-                </div>
-                <div class="car-type">
-                    <input type="radio" id="vclass" name="carType" value="vclass">
-                    <label for="vclass">V-класс 6 мест</label>
                 </div>
             </div>
 
@@ -144,19 +138,9 @@
                 <label for="from">Откуда?</label>
                 <select id="from" name="from" required>
                     <option value="">-- Выберите пункт отправления --</option>
-                    <option value="airport">Аэропорт Сочи (Адлер)</option>
-                    <option value="railway_adler">ЖД вокзал Адлер</option>
-                    <option value="railway_sochi">ЖД вокзал Сочи</option>
-                    <option value="city_adler">город Адлер</option>
-                    <option value="city_sochi">город Сочи</option>
-                    <option value="olympic">Олимпийский парк (Сириус)</option>
-                    <option value="krasnaya_polyana">⭐ Горы Красная поляна</option>
-                    <option value="polyana960">Красная поляна 960м</option>
-                    <option value="gazprom1389">Газпром 1389м</option>
-                    <option value="rosa_hutor">Роза Хутор</option>
-                    <option value="rosa_plato">Роза Плато 1100м</option>
-                    <option value="other_from">- Уточню адрес в комментариях</option>
-                    <option value="call_from">Уточню адрес, перезвоните мне</option>
+                    <option value="airport">а/п Сочи (Адлер)</option>
+                    <option value="railway_adler">ж/д Адлер</option>
+                    <option value="railway_imeretinsky">ж/д Имеретинский курорт</option>
                 </select>
             </div>
 
@@ -164,64 +148,16 @@
                 <label for="to">Куда?</label>
                 <select id="to" name="to" required>
                     <option value="">-- Выберите пункт назначения --</option>
-                    <optgroup label="⭐ Большой Сочи">
-                        <option value="railway_adler">ж/д вокзал Адлер</option>
-                        <option value="railway_sochi">ж/д вокзал Сочи</option>
-                        <option value="city_sochi">город Сочи</option>
-                        <option value="city_adler">город Адлер</option>
-                        <option value="resort_adler">курортный городок Адлер</option>
-                        <option value="sirius">Сириус (Олимп парк)</option>
-                        <option value="kpp_psou">КПП Псоу граница</option>
-                        <option value="dagomys">Дагомыс</option>
-                        <option value="loo">Лоо</option>
-                        <option value="vardane">Вардане</option>
-                        <option value="lazarevskoe">Лазаревское</option>
-                    </optgroup>
-                    <optgroup label="⭐ Горы">
-                        <option value="krasnaya_polyana">п. Красная поляна</option>
-                        <option value="esto_sadok">Эсто Садок</option>
-                        <option value="polyana540">Красная поляна 540м</option>
-                        <option value="polyana960">Красная поляна 960м</option>
-                        <option value="gazprom_galaktika">Газпром Галактика</option>
-                        <option value="gazprom1389">Газпром 1389м</option>
-                        <option value="rosa_hutor">Роза Хутор</option>
-                        <option value="rosa_plato">Роза Плато 1100м</option>
-                    </optgroup>
-                    <optgroup label="⭐ Краснодарский край">
-                        <option value="dzhubga">Джубга</option>
-                        <option value="tuapse">Туапсе</option>
-                        <option value="gelendzhik">Геленджик</option>
-                        <option value="novorossiysk">Новороссийск</option>
-                        <option value="anapa">Анапа</option>
-                        <option value="krasnodar">Краснодар</option>
-                    </optgroup>
-                    <optgroup label="⭐ АБХАЗИЯ">
-                        <option value="amzara">Амзара</option>
-                        <option value="tsandrypsh">Цандрыпш</option>
-                        <option value="bagripsh">Багрипш</option>
-                        <option value="gagra">Гагры</option>
-                        <option value="alakhadzy">Алахадзы</option>
-                        <option value="citrus">Цитрусовый</option>
-                        <option value="milk">Молочный совхоз</option>
-                        <option value="pitsunda">Пицунда</option>
-                        <option value="ldzaa">Лдзаа</option>
-                        <option value="khipsta">Хыпста</option>
-                        <option value="myusera">Мюсера</option>
-                        <option value="gudauta">Гудаута</option>
-                        <option value="primorskoe">Приморское</option>
-                        <option value="new_afon">Новый Афон</option>
-                        <option value="shitskvara">Шицквара</option>
-                        <option value="eshera">Эшера</option>
-                        <option value="sukhum">Сухум</option>
-                        <option value="agudzera">Агудзера</option>
-                        <option value="kyndyg">Кындыг</option>
-                        <option value="tamysh">Тамыш</option>
-                        <option value="ochamchira">Очамчыра</option>
-                        <option value="tkuarchal">Ткуарчал</option>
-                        <option value="gal">Гал</option>
-                    </optgroup>
-                    <option value="other_to">--- Уточню адрес в комментариях</option>
-                    <option value="call_to">Уточню адрес, перезвоните мне</option>
+                    <option value="tsandrypsh">Цандрипш</option>
+                    <option value="gagra">Гагра</option>
+                    <option value="alakhadzy">Алахадзе (Цитрусовый)</option>
+                    <option value="pitsunda">Пицунда</option>
+                    <option value="lidzava">Лидзава</option>
+                    <option value="gudauta">Гудаута</option>
+                    <option value="new_afon">Новый Афон</option>
+                    <option value="sukhum">Сухум</option>
+                    <option value="kyndyg">Кындыг</option>
+                    <option value="ochamchira">Очамчира</option>
                 </select>
             </div>
 
@@ -273,227 +209,6 @@
         </form>
     </div>
 
-    <script>
-        // Фильтрация ошибок консоли - игнорируем ошибки, не связанные с формой
-        const originalError = console.error;
-        console.error = function(...args) {
-            const message = args.join(' ');
-            // Игнорируем ошибки от блокировщиков рекламы и расширений браузера
-            if (!message.includes('play.google.com') && 
-                !message.includes('ERR_BLOCKED_BY_CLIENT') &&
-                !message.includes('chrome-extension://invalid')) {
-                originalError.apply(console, args);
-            }
-        };
-
-        const form = document.getElementById('orderForm');
-        const fromSelect = document.getElementById('from');
-        const toSelect = document.getElementById('to');
-        const priceDisplay = document.getElementById('priceDisplay');
-
-        // Примерная таблица цен (можно расширить)
-        const prices = {
-            'airport': {
-                'railway_adler': 800,
-                'railway_sochi': 2000,
-                'city_sochi': 2000,
-                'city_adler': 1000,
-                'resort_adler': 1300,
-                'sirius': 1000,
-                'kpp_psou': 1500,
-                'dagomys': 2500,
-                'loo': 3500,
-                'vardane': 4000,
-                'lazarevskoe': 5000,
-                'krasnaya_polyana': 2000,
-                'esto_sadok': 2000,
-                'polyana540': 2000,
-                'polyana960': 2500,
-                'gazprom_galaktika': 2000,
-                'gazprom1389': 3500,
-                'rosa_hutor': 2000,
-                'rosa_plato': 3000,
-                'gagra': 2900,
-                'pitsunda': 3900,
-                'new_afon': 5500,
-                'sukhum': 6500
-            }
-        };
-
-        function calculatePrice() {
-            const from = fromSelect.value;
-            const to = toSelect.value;
-            const carType = document.querySelector('input[name="carType"]:checked').value;
-
-            if (!from || !to || from === to) {
-                priceDisplay.classList.remove('show');
-                return;
-            }
-
-            // Коэффициенты для разных типов автомобилей
-            const multipliers = {
-                'standard': 1,
-                'comfort': 1.2,
-                'business': 1.5,
-                'minivan5': 1.3,
-                'minivan7': 1.5,
-                'vclass': 1.8
-            };
-
-            let basePrice = 0;
-            
-            // Простая логика расчета (можно расширить)
-            if (prices[from] && prices[from][to]) {
-                basePrice = prices[from][to];
-            } else {
-                // Базовая цена для других маршрутов
-                basePrice = 1500;
-            }
-
-            const finalPrice = Math.round(basePrice * multipliers[carType]);
-            
-            priceDisplay.textContent = `Примерная стоимость: ${finalPrice} ₽`;
-            priceDisplay.classList.add('show');
-        }
-
-        fromSelect.addEventListener('change', calculatePrice);
-        toSelect.addEventListener('change', calculatePrice);
-        
-        document.querySelectorAll('input[name="carType"]').forEach(radio => {
-            radio.addEventListener('change', calculatePrice);
-        });
-
-        // Маска для телефона
-        const phoneInput = document.getElementById('phone');
-        phoneInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.startsWith('8')) {
-                value = '7' + value.slice(1);
-            }
-            if (value.startsWith('7')) {
-                value = value.slice(0, 11);
-                let formatted = '+7';
-                if (value.length > 1) {
-                    formatted += ' (' + value.slice(1, 4);
-                }
-                if (value.length >= 4) {
-                    formatted += ') ' + value.slice(4, 7);
-                }
-                if (value.length >= 7) {
-                    formatted += '-' + value.slice(7, 9);
-                }
-                if (value.length >= 9) {
-                    formatted += '-' + value.slice(9, 11);
-                }
-                e.target.value = formatted;
-            }
-        });
-
-        // Установка минимальной даты (сегодня)
-        const dateInput = document.getElementById('date');
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
-
-        // URL вашего Google Apps Script веб-приложения
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxXwoVxCUSlYWINDquj3vvKFmW7Tp6x6yZDa6ZdwcJP7PSo4k6OoR5PfhVF__Nuwj7dtg/exec';
-
-        // Функция для получения читаемых названий
-        function getReadableName(value, type) {
-            if (type === 'carType') {
-                const names = {
-                    'standard': 'Стандарт',
-                    'comfort': 'Комфорт +',
-                    'business': 'Бизнес',
-                    'minivan5': 'Минивэн 5 мест',
-                    'minivan7': 'Минивэн 7 мест',
-                    'vclass': 'V-класс 6 мест'
-                };
-                return names[value] || value;
-            }
-            if (type === 'from' || type === 'to') {
-                const select = type === 'from' ? fromSelect : toSelect;
-                const option = select.querySelector(`option[value="${value}"]`);
-                return option ? option.textContent : value;
-            }
-            return value;
-        }
-
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const agreeCheckbox = document.getElementById('agree');
-            if (!agreeCheckbox.checked) {
-                alert('Необходимо согласие с политикой обработки персональных данных');
-                return;
-            }
-
-            const submitBtn = form.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            
-            // Блокируем кнопку и показываем загрузку
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Отправка...';
-
-            const formData = {
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                carType: getReadableName(document.querySelector('input[name="carType"]:checked').value, 'carType'),
-                from: getReadableName(fromSelect.value, 'from'),
-                to: getReadableName(toSelect.value, 'to'),
-                date: document.getElementById('date').value,
-                time: document.getElementById('time').value,
-                phone: document.getElementById('phone').value,
-                returnTransfer: document.getElementById('returnTransfer').checked ? 'Да' : 'Нет',
-                comment: document.getElementById('comment').value || '(нет комментария)'
-            };
-
-            try {
-                // Отправка данных в Google Sheets
-                if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_SCRIPT_URL_HERE') {
-                    console.log('✅ Начало отправки данных формы');
-                    console.log('📤 Данные для отправки:', formData);
-                    console.log('🔗 URL Google Apps Script:', GOOGLE_SCRIPT_URL);
-                    console.log('📝 Имя:', formData.firstName);
-                    console.log('📝 Фамилия:', formData.lastName);
-                    
-                    // Отправляем данные как JSON
-                    const response = await fetch(GOOGLE_SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(formData)
-                    });
-
-                    // При no-cors мы не получим ответ, но запрос отправится
-                    console.log('✅ Запрос успешно отправлен в Google Sheets');
-                    
-                    // Небольшая задержка для обработки на сервере
-                    await new Promise(resolve => setTimeout(resolve, 1500));
-                    console.log('✅ Обработка завершена');
-                } else {
-                    console.warn('⚠️ Google Script URL не настроен. Данные:', formData);
-                }
-
-                console.log('✅ Форма успешно отправлена!');
-                alert('Заказ принят! Мы свяжемся с вами в ближайшее время.');
-                form.reset();
-                priceDisplay.classList.remove('show');
-                
-            } catch (error) {
-                console.error('Ошибка при отправке данных:', error);
-                console.error('Детали ошибки:', {
-                    message: error.message,
-                    stack: error.stack,
-                    formData: formData
-                });
-                alert('Произошла ошибка при отправке заказа. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.\n\nОшибка: ' + error.message);
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalText;
-            }
-        });
-    </script>
+    <script src="scripts/form.js"></script>
 </body>
 </html>

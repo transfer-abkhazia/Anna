@@ -18,6 +18,12 @@
     <link rel="alternate" href="https://abkhazia-transfer.ru/"/>
     <meta name="theme-color" content="#667eea">
     
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/taxi.png" type="image/png">
+    <link rel="icon" type="image/png" href="images/taxi.png">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="apple-touch-icon" href="images/taxi.png">
+    
     <!-- Google Site Verification -->
     <meta name="google-site-verification" content="8ZwQtQofGscmEIXgc9pLeWjOb3_X9oeClMgwux2Vl2A" />
     
@@ -41,7 +47,7 @@
     <meta name="twitter:image" content="https://abkhazia-transfer.ru/og-image.jpg">
     <meta name="twitter:image:alt" content="Ваш трансфер - Такси и трансфер в Сочи, Красную Поляну, Абхазию">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
     
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -59,10 +65,10 @@
         "availableLanguage": "Russian",
         "areaServed": "RU"
       },
-      "sameAs": [
-        "https://t.me/transfer23",
-        "https://wa.me/79407726590"
-      ],
+        "sameAs": [
+          "https://t.me/anutaabh",
+          "https://wa.me/79407726590"
+        ],
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
@@ -155,12 +161,12 @@
         <div class="main-page">
             <h1>Ваш трансфер</h1>
             <p>Надежный трансфер в Сочи, Красную Поляну и Абхазию</p>
-            <a href="form.html" class="order-link">Заказать автомобиль</a>
+            <a href="form.html" class="order-link" target="_blank" rel="noopener noreferrer">Заказать автомобиль</a>
             
             <div class="contacts">
                 <p class="contacts-title">Свяжитесь с нами:</p>
                 <div class="contact-links">
-                    <a href="https://t.me/@Alexandr_Khalupa" class="contact-icon-link telegram" target="_blank" rel="noopener noreferrer" title="Написать в Telegram">
+                    <a href="https://t.me/anutaabh" class="contact-icon-link telegram" target="_blank" rel="noopener noreferrer" title="Написать в Telegram">
                         <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.193l-1.87 8.803c-.14.625-.52.78-1.05.485l-2.9-2.14-1.4 1.345c-.13.13-.24.24-.49.24l.21-2.98 5.36-4.84c.23-.21-.05-.33-.36-.12l-6.63 4.18-2.86-.89c-.62-.19-.64-.62.13-.95l11.24-4.33c.51-.19.96.11.79.69z"/>
                         </svg>
@@ -203,44 +209,6 @@
         </div>
     </div>
 
-    <script>
-        // Функция копирования номера телефона в буфер обмена
-        const phoneCopyBtn = document.getElementById('phoneCopyBtn');
-        const copyIndicator = document.getElementById('copyIndicator');
-        const phoneNumber = '8 940 772 65 90';
-
-        phoneCopyBtn.addEventListener('click', async function() {
-            try {
-                // Копируем номер в буфер обмена
-                await navigator.clipboard.writeText(phoneNumber.replace(/\s/g, ''));
-                
-                // Показываем индикатор успешного копирования
-                copyIndicator.classList.add('show');
-                
-                // Скрываем индикатор через 2 секунды
-                setTimeout(() => {
-                    copyIndicator.classList.remove('show');
-                }, 2000);
-            } catch (err) {
-                // Fallback для старых браузеров
-                const textArea = document.createElement('textarea');
-                textArea.value = phoneNumber.replace(/\s/g, '');
-                textArea.style.position = 'fixed';
-                textArea.style.opacity = '0';
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    copyIndicator.classList.add('show');
-                    setTimeout(() => {
-                        copyIndicator.classList.remove('show');
-                    }, 2000);
-                } catch (err) {
-                    alert('Не удалось скопировать номер. Номер: ' + phoneNumber);
-                }
-                document.body.removeChild(textArea);
-            }
-        });
-    </script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>

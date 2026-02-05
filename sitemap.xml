@@ -7,7 +7,7 @@
     <!-- Главная страница -->
     <url>
         <loc>https://abkhazia-transfer.ru/</loc>
-        <lastmod>2024-01-15</lastmod>
+        <lastmod>2026-02-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -15,7 +15,7 @@
     <!-- Страница заказа -->
     <url>
         <loc>https://abkhazia-transfer.ru/form.html</loc>
-        <lastmod>2024-01-15</lastmod>
+        <lastmod>2026-02-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -23,7 +23,7 @@
     <!-- Политика обработки персональных данных -->
     <url>
         <loc>https://abkhazia-transfer.ru/politika-obrabotki-personalnyh-dannyh.html</loc>
-        <lastmod>2024-01-15</lastmod>
+        <lastmod>2026-02-05</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>

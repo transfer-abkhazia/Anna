@@ -7,11 +7,3 @@ Sitemap: https://abkhazia-transfer.ru/sitemap.xml
 # Disallow admin and private areas (if any)
 Disallow: /admin/
 Disallow: /private/
-
-# Allow all pages
-Allow: /index.html
-Allow: /form.html
-Allow: /politika-obrabotki-personalnyh-dannyh.html
-
-# Crawl-delay (optional, adjust if needed)
-Crawl-delay: 1

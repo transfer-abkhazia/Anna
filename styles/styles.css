@@ -360,6 +360,12 @@ h2 {
     text-decoration: underline;
 }
 
+.checkbox-group label .optional {
+    color: #999;
+    font-size: 0.9em;
+    font-weight: normal;
+}
+
 .submit-btn {
     width: 100%;
     padding: 18px;

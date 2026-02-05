@@ -3,8 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заказать автомобиль - Трансфер 23</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Заказать трансфер онлайн - Ваш трансфер | Сочи, Красная Поляна, Абхазия</title>
+    <meta name="description" content="Заказать трансфер в Сочи, Красную Поляну, Абхазию онлайн. Выберите тип автомобиля: Стандарт, Комфорт, Бизнес, Минивэн. Фиксированные цены. Работаем 24/7.">
+    <meta name="keywords" content="заказать трансфер Сочи, заказать такси онлайн, трансфер Красная Поляна заказ, такси Адлер заказ, трансфер Абхазия онлайн, заказать такси Сочи онлайн">
+    <meta name="author" content="Ваш трансфер">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://abkhazia-transfer.ru/stoimost">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abkhazia-transfer.ru/stoimost">
+    <meta property="og:title" content="Заказать трансфер онлайн - Ваш трансфер">
+    <meta property="og:description" content="Заказать трансфер в Сочи, Красную Поляну, Абхазию онлайн. Выберите тип автомобиля и маршрут. Фиксированные цены.">
+    <meta property="og:locale" content="ru_RU">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://abkhazia-transfer.ru/stoimost">
+    <meta property="twitter:title" content="Заказать трансфер онлайн - Ваш трансфер">
+    <meta property="twitter:description" content="Заказать трансфер в Сочи, Красную Поляну, Абхазию онлайн. Выберите тип автомобиля и маршрут.">
+    
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Трансфер и такси",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Ваш трансфер",
+        "telephone": "8 940 772 65 90",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "8 940 772 65 90",
+          "contactType": "customer service",
+          "availableLanguage": "Russian"
+        },
+        "sameAs": [
+          "https://t.me/transfer23",
+          "https://wa.me/79407726590"
+        ]
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": ["Сочи", "Адлер", "Красная Поляна", "Абхазия"]
+      },
+      "description": "Заказать трансфер в Сочи, Красную Поляну, Абхазию онлайн"
+    }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -125,6 +175,17 @@
 
             <div class="form-row">
                 <div class="form-group">
+                    <label for="firstName">Имя</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Введите ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Фамилия</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Введите вашу фамилию" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
                     <label for="date">Дата поездки</label>
                     <input type="date" id="date" name="date" required>
                 </div>
@@ -142,6 +203,11 @@
             <div class="form-group">
                 <label for="comment">Комментарий</label>
                 <textarea id="comment" name="comment" placeholder="Дополнительная информация (необязательно)"></textarea>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="returnTransfer" name="returnTransfer">
+                <label for="returnTransfer">Обратный трансфер</label>
             </div>
 
             <div class="checkbox-group">
@@ -317,14 +383,16 @@
             submitBtn.textContent = 'Отправка...';
 
             const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
                 carType: getReadableName(document.querySelector('input[name="carType"]:checked').value, 'carType'),
                 from: getReadableName(fromSelect.value, 'from'),
                 to: getReadableName(toSelect.value, 'to'),
                 date: document.getElementById('date').value,
                 time: document.getElementById('time').value,
                 phone: document.getElementById('phone').value,
-                comment: document.getElementById('comment').value || '(нет комментария)',
-                timestamp: new Date().toLocaleString('ru-RU')
+                returnTransfer: document.getElementById('returnTransfer').checked ? 'Да' : 'Нет',
+                comment: document.getElementById('comment').value || '(нет комментария)'
             };
 
             try {
@@ -333,6 +401,8 @@
                     console.log('✅ Начало отправки данных формы');
                     console.log('📤 Данные для отправки:', formData);
                     console.log('🔗 URL Google Apps Script:', GOOGLE_SCRIPT_URL);
+                    console.log('📝 Имя:', formData.firstName);
+                    console.log('📝 Фамилия:', formData.lastName);
                     
                     // Отправляем данные как JSON
                     const response = await fetch(GOOGLE_SCRIPT_URL, {
@@ -348,7 +418,7 @@
                     console.log('✅ Запрос успешно отправлен в Google Sheets');
                     
                     // Небольшая задержка для обработки на сервере
-                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    await new Promise(resolve => setTimeout(resolve, 1500));
                     console.log('✅ Обработка завершена');
                 } else {
                     console.warn('⚠️ Google Script URL не настроен. Данные:', formData);

@@ -120,6 +120,7 @@ h2 {
 .form-group input[type="date"],
 .form-group input[type="time"],
 .form-group input[type="tel"],
+.form-group input[type="text"],
 .form-group textarea {
     width: 100%;
     padding: 15px;
@@ -133,6 +134,7 @@ h2 {
 .form-group input[type="date"]:hover,
 .form-group input[type="time"]:hover,
 .form-group input[type="tel"]:hover,
+.form-group input[type="text"]:hover,
 .form-group textarea:hover {
     border-color: #667eea;
 }
@@ -140,6 +142,7 @@ h2 {
 .form-group input[type="date"]:focus,
 .form-group input[type="time"]:focus,
 .form-group input[type="tel"]:focus,
+.form-group input[type="text"]:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: #667eea;
@@ -293,6 +296,134 @@ h2 {
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
 }
 
+.contacts {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.contacts-title {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.contact-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.contact-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contact-icon-link.telegram {
+    background: linear-gradient(135deg, #0088cc 0%, #0066aa 100%);
+    color: white;
+}
+
+.contact-icon-link.whatsapp {
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: white;
+}
+
+.contact-icon-link:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.contact-icon-link .icon {
+    width: 32px;
+    height: 32px;
+}
+
+.phone-contact {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.phone-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    position: relative;
+}
+
+.phone-copy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.phone-copy-btn:active {
+    transform: translateY(0);
+}
+
+.phone-icon {
+    width: 20px;
+    height: 20px;
+    stroke: white;
+}
+
+.phone-number {
+    user-select: none;
+}
+
+.copy-indicator {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.copy-indicator.show {
+    opacity: 1;
+}
+
+.copy-indicator::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #333;
+}
+
 .features {
     margin-top: 50px;
     display: grid;
@@ -328,5 +459,24 @@ h2 {
 
     .main-page p {
         font-size: 16px;
+    }
+
+    .contact-links {
+        gap: 15px;
+    }
+
+    .contact-icon-link {
+        width: 50px;
+        height: 50px;
+    }
+
+    .contact-icon-link .icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .phone-copy-btn {
+        font-size: 14px;
+        padding: 10px 20px;
     }
 }

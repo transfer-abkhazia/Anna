@@ -30,6 +30,11 @@
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
     <link rel="apple-touch-icon" href="/images/taxi.png">
     
+    <!-- Preload критических ресурсов для ускорения загрузки -->
+    <link rel="preload" href="styles/styles.css" as="style">
+    <link rel="preload" href="scripts/main.js" as="script">
+    <link rel="preconnect" href="https://abkhazia-transfer.ru">
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://abkhazia-transfer.ru/politika-obrabotki-personalnyh-dannyh.html">
@@ -106,7 +111,7 @@
             margin-bottom: 30px;
         }
     </style>
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/styles.css" media="all">
     
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="https://abkhazia-transfer.ru/sitemap.xml">
@@ -219,7 +224,7 @@
 
     </div>
     
-    <script src="scripts/main.js"></script>
+    <script src="scripts/main.js" defer></script>
     <script>
         document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ru-RU');
     </script>

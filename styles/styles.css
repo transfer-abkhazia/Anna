@@ -56,7 +56,7 @@ body {
 .logo-text {
     font-size: 20px;
     font-weight: 600;
-    color: #667eea;
+    color: #4c63d2;
 }
 
 .main-nav {
@@ -67,7 +67,7 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: #333;
+    color: #1a1a1a;
     font-weight: 500;
     padding: 8px 16px;
     border-radius: 8px;
@@ -129,6 +129,7 @@ body {
     
     .logo-text {
         font-size: 18px;
+        color: #4c63d2;
     }
     
     .menu-toggle {

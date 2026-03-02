@@ -367,6 +367,17 @@ h2 {
     font-weight: normal;
 }
 
+.contact-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 25px;
+    margin-top: 8px;
+}
+
+.contact-methods .checkbox-group {
+    margin-bottom: 0;
+}
+
 .submit-btn {
     width: 100%;
     padding: 18px;

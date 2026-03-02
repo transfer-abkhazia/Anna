@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
     dateInput.setAttribute('min', today);
 
     // URL вашего Google Apps Script веб-приложения
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxXwoVxCUSlYWINDquj3vvKFmW7Tp6x6yZDa6ZdwcJP7PSo4k6OoR5PfhVF__Nuwj7dtg/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ5MGmzvyAFpv9PJ1a0bW91Ku3KoN0YAYcaLooUJpfMyn7cRRsF3GLOLNvukYvlAH3Ow/exec';
 
     // Функция для получения читаемых названий
     function getReadableName(value, type) {
@@ -158,6 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
             date: document.getElementById('date').value,
             time: document.getElementById('time').value,
             phone: document.getElementById('phone').value,
+            contactMethod: Array.from(document.querySelectorAll('input[name="contactMethod"]:checked')).map(cb => cb.value).join(', ') || '(не указано)',
             returnTransfer: document.getElementById('returnTransfer').checked ? 'Да' : 'Нет',
             comment: document.getElementById('comment').value || '(нет комментария)'
         };
@@ -171,22 +172,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('📝 Имя:', formData.firstName);
                 console.log('📝 Фамилия:', formData.lastName);
                 
-                // Отправляем данные как JSON
+                // Отправляем как form-urlencoded (не требует CORS preflight, в отличие от JSON)
+                const params = new URLSearchParams(formData);
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: JSON.stringify(formData)
+                    body: params.toString()
                 });
 
-                // При no-cors мы не получим ответ, но запрос отправится
-                console.log('✅ Запрос успешно отправлен в Google Sheets');
-                
-                // Небольшая задержка для обработки на сервере
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                console.log('✅ Обработка завершена');
+                let result;
+                try {
+                    result = await response.json();
+                } catch (_) {
+                    throw new Error('Сервер вернул некорректный ответ. Проверьте настройки развёртывания Apps Script.');
+                }
+                if (!result.success) {
+                    throw new Error(result.error || 'Ошибка на сервере');
+                }
+                console.log('✅ Данные записаны в Google Sheets');
             } else {
                 console.warn('⚠️ Google Script URL не настроен. Данные:', formData);
             }
